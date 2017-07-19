@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Fresco Clothing">
-    <meta name="keywords" content="Fresco, Frescoclothing, Fresco Clothing">
+    <meta name="description" content="FRESCO Clothing">
+    <meta name="keywords" content="FRESCO, FRESCOclothing, FRESCO Clothing">
 
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#000000">
@@ -41,7 +41,80 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+   function generateMsg()
+   {
+        document.getElementById('msg').value = 'Email: ' +
+        document.getElementById('email').value + ', ' + 'Name: ' +
+        document.getElementById('name').value + ', ' + 'Item: ' + parametersToString();
 
+   }
+	var url = window.location.href;
+	function addItemToCart(word) {
+		var array = document.getElementsByTagName("a");
+		if (checkItem1()) {
+			for(i=0; i<array.length; i++){
+				var a = array[i];
+				a.href = a.href + "?item1=" + word +"&";
+			}
+			url = url + "?item1=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+		}
+		else if (checkItem2()) {
+			for(j=0; j<array.length; j++){
+				var b = array[j];
+				b.href = b.href + "item2=" + word +"&";
+			}
+			url = url + "item2=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+		}
+		else if (checkItem3()) {
+			for(k=0; k<array.length; k++){
+				var c = array[k];
+				c.href = c.href + "item3=" + word +"&";
+			}
+			url = url + "item3=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word;
+		}
+		else {
+			alert("You can only add 3 items to cart.")
+		}
+	refreshURL();			
+	}
+	function checkItem1() {
+		return url.indexOf("item1")==-1;
+	}
+	function checkItem2() {
+		return url.indexOf("item2")==-1;
+	}
+	function checkItem3() {
+		return url.indexOf("item3")==-1;
+	}
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	function setDataToLinks() {
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+		var array = document.getElementsByTagName("a");
+		for(i=0; i<array.length; i++){
+			var a = array[i];
+			if(item1!=null && item2!=null && item3!=null){
+				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&" + "item3=" + item3;
+			}
+			if(item1!=null && item2!=null && item3==null){
+				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&";
+			}
+			if(item1!=null && item2==null && item3==null){
+				a.href = a.href + "?" + "item1=" + item1 + "&";
+			}
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -57,7 +130,7 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a id="link" class="navbar-brand" href="/index.html">
-					Fresco
+					FRESCO
 				</a>
             </div>
 
@@ -68,19 +141,19 @@
                         <a id="link" href="/Clothes/Shirts.html">Shirts</a>
                     </li>
                     <li align="center" id="thing">
-                        <a id="link" href="about.html">Jackets</a>
+                        <a id="link" href="/Clothes/Jackets.html">Jackets</a>
                     </li>
                     <li align="center" id="thing">
-                        <a id="link" href="contact.html">Hats</a>
+                        <a id="link" href="/Clothes/Hats.html">Hats</a>
                     </li>
                     <li align="center" id="thing">
-                        <a id="link" href="contact.html">Joggers</a>
+                        <a id="link" href="/Clothes/Joggers.html">Joggers</a>
                     </li>
                     <li align="center" id="thing">
                         <a id="link" href="/about.html">About</a>
                     </li>
                     <li align="center" id="thing">
-                        <a id="link" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                        <a id="link" href="/checkout.html"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                     </li>
                 </ul>
             </div>
@@ -110,7 +183,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p align="center"><font size="18">About Us</font></p>
-                <p align="center">Fresco was established in 2016 by Vikas Sharma and Thimira Bandara. We are a clothing company that stands for being fresh and loving the environment. We believe that it is our responsibility to help raise awareness and preserve the environment as much as we can. The dream is that we will be able to donate a portion of our sums to organizations such as Stand For Trees. With your help we can accomplish this goal. We hope to motivate the world to take action and explore more of the natural beauty in the world. Thank you for your support! And remember to be fresh, stay fresh, and live fresh!</p>
+                <p align="center">FRESCO was established in 2016 by Vikas Sharma and Thimira Bandara. We are a clothing company that stands for being fresh and loving the environment. We believe that it is our responsibility to help raise awareness and preserve the environment as much as we can. The dream is that we will be able to donate a portion of our sums to organizations such as Stand For Trees. With your help we can accomplish this goal. We hope to motivate the world to take action and explore more of the natural beauty in the world. Thank you for your support! And remember to be fresh, stay fresh, and live fresh!</p>
             </div>
         </div>
     </div>
@@ -118,13 +191,13 @@
         <div class="w3-row">
             <br>
             <div class="w3-half">
-                <img src="media/vikaspfp.png" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+                <img src="media/owners/vikas.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
                 <h3>Vikas Sharma</h3>
                 <p>Company Founder</p>
             </div>
 
             <div class="w3-half">
-                <img src="media/thimira1.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+                <img src="media/owners/tim2.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
                 <h3>Thimira Bandara</h3>
                 <p>Company Founder</p>
             </div>
@@ -183,7 +256,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright © Fresco Clothing </p>
+                    <p class="copyright text-muted">Copyright © FRESCO Clothing </p>
                 </div>
             </div>
         </div>
@@ -197,7 +270,65 @@
 
     <!-- Theme JavaScript -->
     <script src="/js/theme.js"></script>
-
+<script>
+//	setDataToID("cart");
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	function parametersToString(){
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+		if(item1!=null && item2!=null && item3!=null){
+			return item1 + ", " + item2 + ", " + item3;
+		}
+		if(item1!=null && item2!=null && item3==null){
+			return item1 + ", " + item2;
+		}
+		else{
+			return item1;
+		}
+	}
+	function setDataToID(word) {
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+	
+		if(item1!=null && item2!=null && item3!=null){
+			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2 + ", " + item3;
+		}
+		if(item1!=null && item2!=null && item3==null){
+			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2;
+		}
+		if(item1!=null && item2==null && item3==null){
+			document.getElementById(word).innerHTML ="Cart: " + item1;
+		}
+	}
+	function getOrigLinks() {
+		var arr = document.getElementsByTagName("a");
+		var origLinks= Array(arr.length);
+		for(i=0; i<arr.length; i++){
+			origLinks[i] = arr[i]+" ";
+			
+		}
+		return origLinks;
+	}
+	var originalLinks = getOrigLinks();
+	function clearCart(word){
+		var arr = document.getElementsByTagName("a");
+		for(i=0; i<arr.length; i++){
+			var a = arr[i];
+			a.href = originalLinks[i];
+		}
+		url = "";
+		alert("Cart Cleared");
+		document.getElementById(word).innerHTML ="";
+	}
+	setDataToLinks();
+	function refreshURL(){
+		window.history.pushState('page2', 'Title', url);
+	}
+</script>
 </body>
 
 </html>

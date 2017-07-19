@@ -16,7 +16,7 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
 
-    <link rel="shortcut icon" href="logo/favicon.ico">
+    <link rel="shortcut icon" href="/logo/favicon.ico">
 
     <title>FRESCO Clothing</title>
 
@@ -41,79 +41,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script>
-   function generateMsg()
-   {
-        document.getElementById('msg').value = 'Email: ' +
-        document.getElementById('email').value + ', ' + 'Name: ' +
-        document.getElementById('name').value + ', ' + 'Item: ' + parametersToString();
-   }
-	var url = window.location.href;
-	function addItemToCart(word) {
-		var array = document.getElementsByTagName("a");
-		if (checkItem1()) {
-			for(i=0; i<array.length; i++){
-				var a = array[i];
-				a.href = a.href + "?item1=" + word +"&";
-			}
-			url = url + "?item1=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
-		}
-		else if (checkItem2()) {
-			for(j=0; j<array.length; j++){
-				var b = array[j];
-				b.href = b.href + "item2=" + word +"&";
-			}
-			url = url + "item2=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
-		}
-		else if (checkItem3()) {
-			for(k=0; k<array.length; k++){
-				var c = array[k];
-				c.href = c.href + "item3=" + word +"&";
-			}
-			url = url + "item3=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word;
-		}
-		else {
-			alert("You can only add 3 items to cart.")
-		}
-	refreshURL();		
-	}
-	function checkItem1() {
-		return url.indexOf("item1")==-1;
-	}
-	function checkItem2() {
-		return url.indexOf("item2")==-1;
-	}
-	function checkItem3() {
-		return url.indexOf("item3")==-1;
-	}
-	function getURLParameter(name) {
-		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-	}
-	function setDataToLinks() {
-		var item1 = getURLParameter('item1');
-		var item2 = getURLParameter('item2');
-		var item3 = getURLParameter('item3');
-		var array = document.getElementsByTagName("a");
-		for(i=0; i<array.length; i++){
-			var a = array[i];
-			if(item1!=null && item2!=null && item3!=null){
-				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&" + "item3=" + item3;
-			}
-			if(item1!=null && item2!=null && item3==null){
-				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&";
-			}
-			if(item1!=null && item2==null && item3==null){
-				a.href = a.href + "?" + "item1=" + item1 + "&";
-			}
-		}
-	}
-</script>
 </head>
 
 <body>
@@ -163,14 +90,14 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('/media/timandvikas.jpg')">
+    <header class="intro-header" style="background-image: url('/media/owners/both[1].jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <span class="subheading">Welcome to</span>
+                        <span class="subheading">Here are the</span>
                         <hr class="small">
-                        <h1>FRESCO</h1>
+                        <h1>Joggers</h1>
                     </div>
                 </div>
             </div>
@@ -182,42 +109,12 @@
 
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-		    <h1 align = "center">STAY FRESH</h1>
+		    <p align="center">Sorry, the items are not available at the moment, please check again later.</p>
             </div>
         </div>
     </div>
 
     <hr>
-    <!--pic grid-->
-
-<!-- Header -->
-<div class="w3-content" style="max-width:85vw">
-<!-- Photo Grid -->
-<div class="w3-row-padding" id="myGrid" style="margin-bottom:128px">
-	<div class="w3-col s12">
-			<img src = "media/variousHats.jpg" style = "width: 100%;
-    height: auto;"></div>
-	<div class="w3-third"> 
-            <img src="/media/sellerpeople/girl2.jpg" style="width:100%">
-	    <img src="/media/sellerpeople/Fresco_MountainShirtGirl.jpg" style="width:100%">
-        </div>
-
-        <div class="w3-third">
-            <img src="/media/sellerpeople/Fresco_FreshGirl.jpg" style="width:100%">
-	    <img src="media/sellerpeople/phiHoodie.jpg" style="width:100%">
-            <img src="/media/sellerpeople/person.jpg" style="width:100%">
-        </div>
-
-        <div class="w3-third">
-	    <img src="/media/sellerpeople/hat_blue.jpg" style="width:100%">
-	    <img src="/media/sellerpeople/Fresco_Fresh3Girls.jpg" style="width:100%">
-            <img src="/media/sellerpeople/Fresco_Girl.jpg" style="width:100%">
-        </div>
-</div>
-<!-- End Page Content -->
-</div>
-    <hr>
-    <!--pic grid ends-->
 
     <!-- Footer -->
     <footer>
@@ -256,65 +153,6 @@
 
     <!-- Theme JavaScript -->
     <script src="/js/theme.js"></script>
-<script>
-//	setDataToID("cart");
-	function getURLParameter(name) {
-		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-	}
-	function parametersToString(){
-		var item1 = getURLParameter('item1');
-		var item2 = getURLParameter('item2');
-		var item3 = getURLParameter('item3');
-		if(item1!=null && item2!=null && item3!=null){
-			return item1 + ", " + item2 + ", " + item3;
-		}
-		if(item1!=null && item2!=null && item3==null){
-			return item1 + ", " + item2;
-		}
-		else{
-			return item1;
-		}
-	}
-	function setDataToID(word) {
-		var item1 = getURLParameter('item1');
-		var item2 = getURLParameter('item2');
-		var item3 = getURLParameter('item3');
-	
-		if(item1!=null && item2!=null && item3!=null){
-			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2 + ", " + item3;
-		}
-		if(item1!=null && item2!=null && item3==null){
-			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2;
-		}
-		if(item1!=null && item2==null && item3==null){
-			document.getElementById(word).innerHTML ="Cart: " + item1;
-		}
-	}
-	function getOrigLinks() {
-		var arr = document.getElementsByTagName("a");
-		var origLinks= Array(arr.length);
-		for(i=0; i<arr.length; i++){
-			origLinks[i] = arr[i]+" ";
-			
-		}
-		return origLinks;
-	}
-	var originalLinks = getOrigLinks();
-	function clearCart(word){
-		var arr = document.getElementsByTagName("a");
-		for(i=0; i<arr.length; i++){
-			var a = arr[i];
-			a.href = originalLinks[i];
-		}
-		url = "";
-		alert("Cart Cleared");
-		document.getElementById(word).innerHTML ="";
-	}
-	setDataToLinks();
-	function refreshURL(){
-		window.history.pushState('page2', 'Title', url);
-	}
-</script>
 </body>
 
 </html>

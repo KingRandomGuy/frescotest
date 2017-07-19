@@ -2,35 +2,50 @@
 <html>
 <head>
 <script>
+	var oldURL = "index.html";
+	function getColor(){
+		var e = document.getElementById("color");
+		var strUser = e.options[e.selectedIndex].text;
+		return strUser;
+	}
+	function getSize(){
+		var e = document.getElementById("size");
+		var strUser = e.options[e.selectedIndex].text;
+		return strUser;
+	}
 	var url = window.location.href;
 	function addItemToCart(word) {
+		var size = getSize();
 		var array = document.getElementsByTagName("a");
-		if (checkItem1()) {
+		if(size == "SELECT SIZE"){
+			alert("Fill all fields");
+		}
+		else if (checkItem1()) {
 			for(i=0; i<array.length; i++){
 				var a = array[i];
-				a.href = a.href + "?item1=" + word +"&";
+				a.href = a.href + "?item1=" + size + " " + word +"&";
 			}
-			url = url + "?item1=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+			url = url + "?item1=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word + ",";
 		}
 		else if (checkItem2()) {
 			for(j=0; j<array.length; j++){
 				var b = array[j];
-				b.href = b.href + "item2=" + word +"&";
+				b.href = b.href + "item2=" + size + " " + word +"&";
 			}
-			url = url + "item2=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+			url = url + "item2=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word + ",";
 		}
 		else if (checkItem3()) {
 			for(k=0; k<array.length; k++){
 				var c = array[k];
-				c.href = c.href + "item3=" + word +"&";
+				c.href = c.href + "item3=" + size + " " + word +"&";
 			}
-			url = url + "item3=" + word +"&";
-			alert("Added " + word + " to cart.");
-			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word;
+			url = url + "item3=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word;
 		}
 		else {
 			alert("You can only add 3 items to cart.")
@@ -66,13 +81,41 @@
 			}
 		}
 	}
+	function alerting(){
+		var rawOld = document.referrer;
+		var quesPos = rawOld.indexOf("?");
+		if(quesPos!=-1){
+			oldURL=rawOld.substring(0,quesPos);
+		}
+		else oldURL=rawOld;
+		alert(oldURL);
+	}
+	alerting();
 </script>
 </head>
 <body>
 <p id = "cart"></p>
-<p onclick = "addItemToCart('Small Blue Visualize')">Click me to add a Small Blue Visualize shirt to cart</p>
+<p onclick = "addItemToCart('Visualize')">Click me to add a Small Blue Visualize shirt to cart</p>
 <p onclick = "clearCart('cart')">Clear Cart</p>
+<p onclick = "alerting()">Cleareread</p>
+<select id="color">
+  <option value="1">SELECT COLOR</option>
+  <option value="2">White</option>
+  <option value="3">Blue</option>
+  <option value="3">Grey</option>
+  <option value="3">Red</option>
+</select>
+<script>
+</script>
+<p onclick = "alert(getColor())">Check Color</p>
+<p onclick = "alert(getSize())">Check Size</p>
+<select id="size">
+  <option value="1">SELECT SIZE</option>
+  <option value="2">Small</option>
+  <option value="3">Medium</option>
+</select>
 <a class = "link" href = "test2.html">Go to other page!</a>
+<a class = "link" href = "checkout.html">Checkout!</a>
 
 <script>
 	setDataToID("cart");
@@ -85,13 +128,13 @@
 		var item3 = getURLParameter('item3');
 	
 		if(item1!=null && item2!=null && item3!=null){
-			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2 + ", " + item3;
+			document.getElementById(word).innerHTML ="Cart: \n" + item1 + ", \n" + item2 + ", \n" + item3;
 		}
 		if(item1!=null && item2!=null && item3==null){
-			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2;
+			document.getElementById(word).innerHTML ="Cart: \n" + item1 + ", \n" + item2;
 		}
 		if(item1!=null && item2==null && item3==null){
-			document.getElementById(word).innerHTML ="Cart: " + item1;
+			document.getElementById(word).innerHTML ="Cart: \n" + item1;
 		}
 	}
 	function getOrigLinks() {
@@ -116,6 +159,9 @@
 	}
 	setDataToLinks();
 </script>
+<iframe id = "hidden">
+
+<iframe>
 </body>
 </html>
 

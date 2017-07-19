@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<title>Checkout</title>
+<head>
+<link rel="shortcut icon" href="logo/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico?">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico?">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<style>
+.frescoBtn:hover{
+background-color: #009688;
+}
+</style>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+   function generateMsg()
+   {
+        document.getElementById('msg').value = 'Email: ' +
+        document.getElementById('email').value + ', ' + 'Address: ' + document.getElementByID('address') + ', ' +  'Name: ' +
+        document.getElementById('name').value + ', ' + 'Item: ' + parametersToString();
+   }
+	var url = window.location.href;
+	function addItemToCart(word) {
+		var array = document.getElementsByTagName("a");
+		if (checkItem1()) {
+			for(i=0; i<array.length; i++){
+				var a = array[i];
+				a.href = a.href + "?item1=" + word +"&";
+			}
+			url = url + "?item1=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+		}
+		else if (checkItem2()) {
+			for(j=0; j<array.length; j++){
+				var b = array[j];
+				b.href = b.href + "item2=" + word +"&";
+			}
+			url = url + "item2=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word + ",";
+		}
+		else if (checkItem3()) {
+			for(k=0; k<array.length; k++){
+				var c = array[k];
+				c.href = c.href + "item3=" + word +"&";
+			}
+			url = url + "item3=" + word +"&";
+			alert("Added " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + word;
+		}
+		else {
+			alert("You can only add 3 items to cart.")
+		}	
+	}
+	function checkItem1() {
+		return url.indexOf("item1")==-1;
+	}
+	function checkItem2() {
+		return url.indexOf("item2")==-1;
+	}
+	function checkItem3() {
+		return url.indexOf("item3")==-1;
+	}
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	function setDataToLinks() {
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+		var array = document.getElementsByTagName("a");
+		for(i=0; i<array.length; i++){
+			var a = array[i];
+			if(item1!=null && item2!=null && item3!=null){
+				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&" + "item3=" + item3;
+			}
+			if(item1!=null && item2!=null && item3==null){
+				a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&";
+			}
+			if(item1!=null && item2==null && item3==null){
+				a.href = a.href + "?" + "item1=" + item1 + "&";
+			}
+		}
+	}
+	function getPrevURL(){
+		var rawOld = document.referrer;
+		var quesPos = rawOld.indexOf("?");
+		if(quesPos!=-1){
+			oldURL=rawOld.substring(0,quesPos);
+		}
+		else oldURL=rawOld;
+		//alert(oldURL);
+		//document.getElementById("back").href = oldURL;
+	}
+	getPrevURL();
+</script>
+</head>
+<body>
+<style>
+#success_message{ display: none;}
+.hide {
+position:absolute; 
+top:0px; 
+right:0px; 
+width:0px; 
+height:0px;
+}
+</style>
+<script>
+   function generateMsg()
+   {
+        document.getElementById('msg').value = 'Email: ' +
+        document.getElementById('email').value + ', ' + 'Name: ' +
+        document.getElementById('name').value + ', ' + 'Mailing Address: ' + document.getElementById('address').value + ', ' + 'Item: ' + parametersToString();
+		//var str = document.getElementById('msg').value;
+		//alert(str);
+   }
+</script>
+<script>
+  $(document).ready(function() {
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            first_name: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             last_name: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                     stringLength: {
+                        min: 8,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your street address'
+                    }
+                }
+            },
+            city: {
+                validators: {
+                     stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your state'
+                    }
+                }
+            },
+            zip: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your zip code'
+                    },
+                    zipCode: {
+                        country: 'US',
+                        message: 'Please supply a vaild zip code'
+                    }
+                }
+            },
+            comment: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description of your project'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            var $form = $(e.target);
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+});
+</script>
+<!--
+<p id = "cart"></p>
+<p onclick = "addItemToCart('Small Blue Visualize')">Click me to add a Small Blue Visualize shirt to cart</p>
+<p onclick = "clearCart('cart')">Clear Cart</p>
+<a class = "link" href = "test2.html">Go to other page!</a>-->
+<iframe name="hiddenFrame" class="hide"></iframe>
+<form  class=" form-horizontal" style = "background-color: white;" action="https://api.telegram.org/bot317690503:AAEP4m1ZFK_ls80aavetdsShi74B1w9Ue2g/sendMessage" target = "hiddenFrame" method="post"  id="contact_form">
+<fieldset>
+
+<!-- Form Name -->
+<p style = "padding-top: 5vh; text-align: center; font-size:2em">F R E S C O</p>
+
+<br> <br> <br>
+<p style = "text-align: center;font-size:2em">Checkout</p>
+<!-- Text input-->
+<div class="form-group">
+  <label class = "col-md-2"> </label>
+  <label class="col-md-4 control-label" style = "text-align: left">Account Information</label>  
+  <label  class =" control-label"></label>  
+  <label  class="col-md-3 control-label" style = "text-align:left">Order Summary</label>  
+  
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label" style = "text-align: right">Name</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input id="name" name="first_name" placeholder="Name" class="form-control"  onkeyup="generateMsg()" type="text">
+    </div>
+  </div>
+  <label  id = "cart" class="col-md-6 control-label" style = "text-align: left">No items </label>  
+   
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-2 control-label">E-Mail</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input id="email"name="email" placeholder="E-Mail Address" class="form-control"  onkeyup="generateMsg()"  type="text">
+    </div>
+  </div>
+    <label class="col-md-4 control-label"></label>
+
+  <div class="col-md-4">
+    <button class = "frescoBtn" onclick = "clearCart();"  style = "height: 40px; width:200px; background-color: white; color: black; border-width: 2px; border-style:solid; border-color:black;">CLEAR CART<span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label">Mailing Address</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input id="address"  name="address" placeholder="Address" class="form-control"  onkeyup="generateMsg()"  type="text">
+    </div>
+  </div>
+    <label class="col-md-4 control-label"></label>
+
+  <div class="col-md-4">
+    <button class = "frescoBtn" type="submit"  onclick = "alert('Thanks for your request! Expect to see an email soon.');" style = "height: 40px; width:200px; background-color: white; color: black; border-width: 2px; border-style:solid; border-color:black;">PLACE REQUEST <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
+
+<div>
+	<label>
+	<div>
+	<div>
+  <input type = "hidden" value = "Visualize Grey" id="clothingItem" name="item" placeholder="Clothing Item Name" class="form-control"  onkeyup="generateMsg()" type="text">
+  <input type ="hidden" name = "text" id ="msg">
+  <input type="hidden" name="chat_id" value="-219744564">
+        <input type="hidden" name="parse_mod" value="markdown">
+    </div>
+  </div>
+</div>
+<div class="form-group"> 
+
+</div>
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for requesting from us! We will get back to you shortly.</div>
+
+
+
+</fieldset>
+</form>
+</div>
+
+<script>
+	setDataToID("cart");
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	function parametersToString(){
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+		if(item1!=null && item2!=null && item3!=null){
+			return item1 + ", " + item2 + ", " + item3;
+		}
+		if(item1!=null && item2!=null && item3==null){
+			return item1 + ", " + item2;
+		}
+		else{
+			return item1;
+		}
+	}
+	function setDataToID(word) {
+		var item1 = getURLParameter('item1');
+		var item2 = getURLParameter('item2');
+		var item3 = getURLParameter('item3');
+	
+		if(item1!=null && item2!=null && item3!=null){
+			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2 + ", " + item3;
+		}
+		if(item1!=null && item2!=null && item3==null){
+			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2;
+		}
+		if(item1!=null && item2==null && item3==null){
+			document.getElementById(word).innerHTML ="Cart: " + item1;
+		}
+	}
+	function getOrigLinks() {
+		var arr = document.getElementsByTagName("a");
+		var origLinks= Array(arr.length);
+		for(i=0; i<arr.length; i++){
+			origLinks[i] = arr[i]+" ";
+			
+		}
+		return origLinks;
+	}
+	var originalLinks = getOrigLinks();
+	function clearCart(word){
+		var arr = document.getElementsByTagName("a");
+		for(i=0; i<arr.length; i++){
+			var a = arr[i];
+			a.href = originalLinks[i];
+		}
+		url = "";
+		alert("Cart Cleared");
+		//document.getElementById(word).innerHTML ="";
+		window.location.replace(oldURL);
+	}
+	setDataToLinks();
+</script>
+</body>
+</html>

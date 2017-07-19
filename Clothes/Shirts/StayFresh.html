@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html class="js">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="FRESCO Clothing">
+      <meta name="keywords" content="FRESCO, FRESCOclothing, FRESCO Clothing">
+      <!-- Chrome, Firefox OS and Opera -->
+      <meta name="theme-color" content="#000000">
+      <!-- Windows Phone -->
+      <meta name="msapplication-navbutton-color" content="#000000">
+      <!-- iOS Safari -->
+      <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+      <link rel="shortcut icon" href="/logo/favicon.ico">
+      <title>Stay Fresh || Shirts</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Theme CSS -->
+      <link href="/css/theme.css" rel="stylesheet">
+      <!-- Pic Grid CSS -->
+      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+      <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+      <!-- Custom Fonts -->
+      <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <script>
+         function generateMsg()
+         {
+              document.getElementById('msg').value = 'Email: ' +
+              document.getElementById('email').value + ', ' + 'Name: ' +
+              document.getElementById('name').value + ', ' + 'Item: ' + parametersToString();
+         }
+         	function getColor(){
+		var e = document.getElementById("color");
+		var strUser = e.options[e.selectedIndex].text;
+		return strUser;
+	}
+	function getSize(){
+		var e = document.getElementById("size");
+		var strUser = e.options[e.selectedIndex].text;
+		return strUser;
+	}
+	var url = window.location.href;
+	function addItemToCart(word) {
+		var size = getSize();
+		var array = document.getElementsByTagName("a");
+		if(size == "Select Size"){
+			alert("Fill all fields");
+		}
+		else if (checkItem1()) {
+			for(i=0; i<array.length; i++){
+				var a = array[i];
+				a.href = a.href + "?item1=" + size + " " + word +"&";
+			}
+			url = url + "?item1=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word + ",";
+		}
+		else if (checkItem2()) {
+			for(j=0; j<array.length; j++){
+				var b = array[j];
+				b.href = b.href + "item2=" + size + " " + word +"&";
+			}
+			url = url + "item2=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word + ",";
+		}
+		else if (checkItem3()) {
+			for(k=0; k<array.length; k++){
+				var c = array[k];
+				c.href = c.href + "item3=" + size + " " + word +"&";
+			}
+			url = url + "item3=" + size + " " + word +"&";
+			alert("Added " + size + " " + word + " to cart.");
+			document.getElementById("cart").innerHTML = document.getElementById("cart").innerHTML + " " + size + " " + word;
+		}
+		else {
+			alert("You can only add 3 items to cart.")
+		}	
+	}
+         function checkItem1() {
+         return url.indexOf("item1")==-1;
+         }
+         function checkItem2() {
+         return url.indexOf("item2")==-1;
+         }
+         function checkItem3() {
+         return url.indexOf("item3")==-1;
+         }
+         function getURLParameter(name) {
+         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+         }
+         function setDataToLinks() {
+         var item1 = getURLParameter('item1');
+         var item2 = getURLParameter('item2');
+         var item3 = getURLParameter('item3');
+         var array = document.getElementsByTagName("a");
+         for(i=0; i<array.length; i++){
+         var a = array[i];
+         if(item1!=null && item2!=null && item3!=null){
+         	a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&" + "item3=" + item3;
+         }
+         if(item1!=null && item2!=null && item3==null){
+         	a.href = a.href + "?" + "item1=" + item1 + "&" + "item2=" + item2 + "&";
+         }
+         if(item1!=null && item2==null && item3==null){
+         	a.href = a.href + "?" + "item1=" + item1 + "&";
+         }
+         }
+         }
+      </script>
+   </head>
+   <body>
+      <div id="preloader"></div>
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+               </button>
+               <a id="link" class="navbar-brand" href="/index.html">
+               FRESCO
+               </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                    <li align="center" id="thing">
+                        <a id="link" href="/Clothes/Shirts.html">Shirts</a>
+                    </li>
+                    <li align="center" id="thing">
+                        <a id="link" href="/Clothes/Jackets.html">Jackets</a>
+                    </li>
+                    <li align="center" id="thing">
+                        <a id="link" href="/Clothes/Hats.html">Hats</a>
+                    </li>
+                    <li align="center" id="thing">
+                        <a id="link" href="/Clothes/Joggers.html">Joggers</a>
+                    </li>
+                    <li align="center" id="thing">
+                        <a id="link" href="/about.html">About</a>
+                    </li>
+                    <li align="center" id="thing">
+                        <a id="link" href="/checkout.html"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container -->
+      </nav>
+      <div class="itemPageViewer">
+         <div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
+            <div class="w3-row">
+               <div class="w3-col m7">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; height: 100%">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                           <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                           <div class="item active">
+                              <img class="first-slide" src="/media/shirts/StayFresh.jpg" alt="First slide" height="1200" width="1200">
+                              <div class="container">
+                                 <div class="carousel-caption">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <img class="second-slide" src="/media/shirts/StayFresh-back.jpg" alt="Second slide" height="1200" width="1200" >
+                              <div class="container">
+                                 <div class="carousel-caption">
+                                 </div>
+                              </div>
+                           </div>
+                           </div>
+                        <a id="link" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a id="link" class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                     </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+               </div>
+               <div class="w3-col m5">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                     <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar"Stay Fresh T-Shirt</span></div>
+                     <ul style="size:15px;">
+                        <li>100% Cotton Shirt</li>
+                        <li>Long Sleeve</li>
+                     </ul>
+                     <br>
+                     <select class="btn btn-secondary dropdown-toggle" id="size" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <option>Select Size</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                     </select>
+                     <p>$16</p>
+                     <button onclick = "addItemToCart('Stay Fresh T-Shirt')" class="w3-button w3-theme">Place Order</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="box">
+         <div class="col-lg-12 text-center">
+            <hr>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+               <h2 class="intro-text text-center">Comments</h2>
+               <hr>
+               <p>Feel free to sign in with google and comment on anything regarding this group</p>
+               <div id="disqus_thread"></div>
+               <br>
+               <br>
+               <hr>
+               <script>
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                  /*
+                  var disqus_config = function () {
+                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                  };
+                  */
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://frescoclothing.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+               </script>
+               <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments.</a></noscript>
+            </div>
+         </div>
+      </div>
+      <!-- Footer -->
+      <footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <ul class="list-inline text-center">
+                     <li>
+                        <a id="link" href="https://instagram.com/_u/frescoclothing1?r=sun1">
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                     </li>
+                     <li>
+                        <a id="link" href="https://twitter.com/frescoclothing1/">
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                     </li>
+                  </ul>
+                  <p class="copyright text-muted">Copyright © FRESCO Clothing </p>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- jQuery -->
+      <script src="/vendor/jquery/jquery.min.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Theme JavaScript -->
+      <script src="/js/theme.js"></script>
+      <script id="dsq-count-scr" src="//frescoclothing.disqus.com/count.js" async></script>
+      <script>
+         //	setDataToID("cart");
+         	function getURLParameter(name) {
+         		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+         	}
+         	function parametersToString(){
+         		var item1 = getURLParameter('item1');
+         		var item2 = getURLParameter('item2');
+         		var item3 = getURLParameter('item3');
+         		if(item1!=null && item2!=null && item3!=null){
+         			return item1 + ", " + item2 + ", " + item3;
+         		}
+         		if(item1!=null && item2!=null && item3==null){
+         			return item1 + ", " + item2;
+         		}
+         		else{
+         			return item1;
+         		}
+         	}
+         	function setDataToID(word) {
+         		var item1 = getURLParameter('item1');
+         		var item2 = getURLParameter('item2');
+         		var item3 = getURLParameter('item3');
+         	
+         		if(item1!=null && item2!=null && item3!=null){
+         			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2 + ", " + item3;
+         		}
+         		if(item1!=null && item2!=null && item3==null){
+         			document.getElementById(word).innerHTML ="Cart: " + item1 + ", " + item2;
+         		}
+         		if(item1!=null && item2==null && item3==null){
+         			document.getElementById(word).innerHTML ="Cart: " + item1;
+         		}
+         	}
+         	function getOrigLinks() {
+         		var arr = document.getElementsByTagName("a");
+         		var origLinks= Array(arr.length);
+         		for(i=0; i<arr.length; i++){
+         			origLinks[i] = arr[i]+" ";
+         			
+         		}
+         		return origLinks;
+         	}
+         	var originalLinks = getOrigLinks();
+         	function clearCart(word){
+         		var arr = document.getElementsByTagName("a");
+         		for(i=0; i<arr.length; i++){
+         			var a = arr[i];
+         			a.href = originalLinks[i];
+         		}
+         		url = "";
+         		alert("Cart Cleared");
+         		document.getElementById(word).innerHTML ="";
+         	}
+         	setDataToLinks();
+         	function refreshURL(){
+         		window.history.pushState('page2', 'Title', url);
+         	}
+      </script>
+   </body>
+</html>
