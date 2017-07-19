@@ -20,10 +20,8 @@ background-color: #009688;
    function generateMsg()
    {
         document.getElementById('msg').value = 'Email: ' +
-        document.getElementById('email').value + ', ' + 'Name: ' +
-        document.getElementById('name').value + ', ' + 'Mailing Address: ' + document.getElementById('address').value + ', ' + 'Item: ' + parametersToString();
-		//var str = document.getElementById('msg').value;
-		//alert(str);
+        document.getElementById('email').value + ', ' + 'Address: ' + document.getElementByID('address') + ', ' +  'Name: ' +
+        document.getElementById('name').value + ', ' + 'Item: ' + parametersToString();
    }
 	var url = window.location.href;
 	function addItemToCart(word) {
@@ -248,7 +246,7 @@ height:0px;
 <p onclick = "clearCart('cart')">Clear Cart</p>
 <a class = "link" href = "test2.html">Go to other page!</a>-->
 <iframe name="hiddenFrame" class="hide"></iframe>
-<form  class=" form-horizontal" style = "background-color: white;" action = "http://formspree.io/jimtjames@gmail.com" method="post"  id="contact_form">
+<form  class=" form-horizontal" style = "background-color: white;" action="https://api.telegram.org/bot317690503:AAEP4m1ZFK_ls80aavetdsShi74B1w9Ue2g/sendMessage" target = "hiddenFrame" method="post"  id="contact_form">
 <fieldset>
 
 <!-- Form Name -->
@@ -276,7 +274,7 @@ height:0px;
   <label  id = "cart" class="col-md-6 control-label" style = "text-align: left">No items </label>  
    
 </div>
-<input type="hidden" name="_next" value="index.html"/>
+
 
 <!-- Text input-->
 <div class="form-group">
@@ -329,7 +327,7 @@ height:0px;
 
 </fieldset>
 </form>
-
+</div>
 
 <script>
 	setDataToID("cart");
